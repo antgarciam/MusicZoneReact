@@ -4,7 +4,7 @@ function Navbar(){
         <nav className="navbar navbar-expand bg-dark">
             <div className="container">
                 <span className="navbar-brand text-white">
-                    Mi Tienda
+                    MusicZone 🎶🎸
                 </span>
 
                 <div className="navbar-nav">

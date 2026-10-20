@@ -7,6 +7,7 @@ import Nosotros from './paginas/Nosotros'
 import Contacto from './paginas/Contacto'
 import DetalleProducto from './paginas/DetalleProducto'
 import Login from './paginas/Login'
+import Footer from './componentes/organismos/Footer'
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
 
       </Routes>
 
+      <Footer />
     </>
   )
 
