@@ -8,6 +8,7 @@ import Contacto from './paginas/Contacto'
 import DetalleProducto from './paginas/DetalleProducto'
 import Login from './paginas/Login'
 import Footer from './componentes/organismos/Footer'
+import Registrarse from './paginas/Registrarse'
 
 function App() {
 
@@ -39,6 +40,11 @@ function App() {
         <Route
           path="/contacto"
           element = {<Contacto/>}
+        />
+
+        <Route
+          path="/registrarse"
+          element = {<Registrarse/>}
         />
 
         <Route

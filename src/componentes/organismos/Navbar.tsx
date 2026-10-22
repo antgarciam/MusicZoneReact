@@ -24,8 +24,12 @@ function Navbar(){
                         Contacto
                     </Link>
 
+                    <Link className="nav-link text-white" to="/registrarse">
+                        Registrarse
+                    </Link>
+
                     <Link className="nav-link text-white" to="/login">
-                        Login
+                        Iniciar Sesion
                     </Link>
                 </div>
 

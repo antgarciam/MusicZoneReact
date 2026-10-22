@@ -23,8 +23,10 @@ function FormularioLogin(){
             alert("Campo contreseña no puede estar vacío");
             return;
         }
-        if(psswd.length <= 8) {
+        if(psswd.length < 8) {
             alert("Mínimo de caracteres: 8")
+
+            return;
         }
         alert("Bienvenido/a");
     };
@@ -43,7 +45,7 @@ function FormularioLogin(){
 
             <CampoFormulario
             etiqueta="Contraseña"
-            tipo="psswd"
+            tipo="password"
             nombre="contraseña"
             valor={psswd}
             alCambiar={setPsswd}
