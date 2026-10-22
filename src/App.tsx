@@ -9,6 +9,7 @@ import DetalleProducto from './paginas/DetalleProducto'
 import Login from './paginas/Login'
 import Footer from './componentes/organismos/Footer'
 import Registrarse from './paginas/Registrarse'
+import Carrito from './paginas/Carrito'
 
 function App() {
 
@@ -50,6 +51,11 @@ function App() {
         <Route
           path="/login"
           element = {<Login/>}
+        />
+
+        <Route
+          path="/carrito"
+          element={<Carrito/>}
         />
 
 
