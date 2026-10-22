@@ -11,8 +11,7 @@ function FormularioContacto(){
     //Valida los datos al enviar el formulario
 
     const manejarEnvio = (e: React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault(); //Evita recargar la pagina
-
+        e.preventDefault();
         if(nombre.trim() === "") {
             alert("Debe ingresar su nombre");
             return;
@@ -61,7 +60,7 @@ function FormularioContacto(){
             <button type="submit" className="btn btn-primary">
                 Enviar Mensaje
             </button>
-            
+
         </form>
     );
 }
