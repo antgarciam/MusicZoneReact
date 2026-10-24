@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { obtenerProductos } from "../datos/ProductosData";
 
 interface ProductoCarrito {
   id: number;
@@ -11,11 +11,20 @@ interface ProductoCarrito {
 }
 
 function Carrito() {
-    const [productos, setProductos] = useState<ProductoCarrito[]>(() => {
+   
+const [productos, setProductos] = useState<ProductoCarrito[]>(() => {
     const carritoGuardado = localStorage.getItem("carritoMusicZone");
+    const carrito: ProductoCarrito[] = carritoGuardado ? JSON.parse(carritoGuardado) : [];
+    const catalogo = obtenerProductos();
 
-    return carritoGuardado ? JSON.parse(carritoGuardado) : [];
-  });
+    const carritoActualizado = carrito.filter((producto) =>
+        catalogo.some((productoCatalogo) => productoCatalogo.id === producto.id && productoCatalogo.activo)
+    );
+
+    localStorage.setItem("carritoMusicZone", JSON.stringify(carritoActualizado));
+
+    return carritoActualizado;
+});
 
   const guardarCarrito = (nuevoCarrito: ProductoCarrito[]) => {
     setProductos(nuevoCarrito);

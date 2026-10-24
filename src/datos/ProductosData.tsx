@@ -20,8 +20,7 @@ export const productosIniciales: Producto[] = [
     { id: 9, titulo: "Pearl Roadshow", descripcion: "Batería acústica ideal para principiantes.", precio: 499990, imagen: "/imgProductos/PearlRoadshow.jpg", categoria: "Baterías", activo: true },
     { id: 10, titulo: "Yamaha Rydeen", descripcion: "Batería acústica para ensayos y presentaciones.", precio: 699990, imagen: "/imgProductos/YamahaRydeen.jpg", categoria: "Baterías", activo: true },
     { id: 11, titulo: "Alesis Nitro", descripcion: "Batería electrónica compacta para practicar.", precio: 449990, imagen: "/imgProductos/AlesisNitro.jpg", categoria: "Baterías", activo: true },
-    { id: 12, titulo: "Roland TD-02", descripcion: "Batería electrónica para practicar en casa.", precio: 599990, imagen: "/imgProductos/RolandTD-02.jpg", categoria: "Baterías", activo: true },
-    { id: 13, titulo: "PRUEBA", descripcion: "Es una prueba", precio: 111199990, imagen: "/imgProductos/prueba.jpg", categoria: "Guitarras", activo: true }
+    { id: 12, titulo: "Roland TD-02", descripcion: "Batería electrónica para practicar en casa.", precio: 599990, imagen: "/imgProductos/RolandTD-02.jpg", categoria: "Baterías", activo: true }
 ];
 
 
@@ -40,16 +39,17 @@ export function obtenerProductos(): Producto[] {
             throw new Error("Formato de productos inválido");
         }
 
-        const productosNuevos = productosIniciales.filter(
-            (productoInicial) =>
-                !productos.some((productoGuardado) => productoGuardado.id === productoInicial.id)
-        );
+        const productosActualizados = productosIniciales.map((productoInicial) => {
+            const productoGuardado = productos.find(
+                (producto) => producto.id === productoInicial.id
+            );
 
-        const productosActualizados = [...productos, ...productosNuevos];
+            return productoGuardado
+                ? { ...productoInicial, ...productoGuardado }
+                : productoInicial;
+        });
 
-        if (productosNuevos.length > 0) {
-            localStorage.setItem("productosMusicZone", JSON.stringify(productosActualizados));
-        }
+        localStorage.setItem("productosMusicZone", JSON.stringify(productosActualizados));
 
         return productosActualizados;
     } catch {
