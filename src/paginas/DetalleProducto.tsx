@@ -1,136 +1,60 @@
-import { useParams } from 'react-router-dom'
-import BotonVolver from '../componentes/atomos/BotonVolver'
 
-const productos = [
-    {
-        id: 1,
-        titulo: "Guitarra Martin",
-        descripcion: "Guitarra acústica de alta calidad, con un sonido cálido y equilibrado. Ideal para interpretar distintos estilos musicales con comodidad.",
-        precio: 120000,
-        imagen: "/imgProductos/guitarraMartin.jpg",
-        categoria: "Guitarras"
-    },
-    {
-        id: 2,
-        titulo: "Fender Stratocaster",
-        descripcion: "Guitarra eléctrica reconocida por su sonido versátil y brillante. Perfecta para tocar rock, blues, pop y otros géneros musicales.",
-        precio: 450000,
-        imagen: "/imgProductos/FenderStratocaster.jpg",
-        categoria: "Guitarras"
-    },
-    {
-        id: 3,
-        titulo: "Gibson Les Paul",
-        descripcion: "Guitarra eléctrica con un sonido potente y profundo, ideal para riffs y solos. Una excelente opción para los amantes del rock.",
-        precio: 890000,
-        imagen: "/imgProductos/GibsonLesPaul.jpg",
-        categoria: "Guitarras"
-    },
-    {
-        id: 4,
-        titulo: "Yamaha F310",
-        descripcion: "Guitarra acústica cómoda y fácil de tocar, ideal para quienes están comenzando. Ofrece un sonido equilibrado para practicar y acompañar canciones.",
-        precio: 159990,
-        imagen: "/imgProductos/YamahaF310.jpg",
-        categoria: "Guitarras"
-    },
-    {
-        id: 5,
-        titulo: "Piano de Cola",
-        descripcion: "Piano de cola con un sonido amplio y expresivo, ideal para interpretaciones musicales. Su diseño elegante destaca en cualquier espacio.",
-        precio: 2500000,
-        imagen: "/imgProductos/PianodeCola.jpg",
-        categoria: "Pianos"
-    },
-    {
-        id: 6,
-        titulo: "Yamaha P-45",
-        descripcion: "Piano digital de 88 teclas que ofrece una experiencia similar a la de un piano tradicional. Ideal para estudiar y practicar en casa.",
-        precio: 499990,
-        imagen: "/imgProductos/YamahaP-45.jpg",
-        categoria: "Pianos"
-    },
-    {
-        id: 7,
-        titulo: "Roland FP-10",
-        descripcion: "Piano digital con teclas contrapesadas para una interpretación más natural. Su formato compacto facilita su uso en el hogar.",
-        precio: 579990,
-        imagen: "/imgProductos/RolandFP-10.jpg",
-        categoria: "Pianos"
-    },
-    {
-        id: 8,
-        titulo: "Teclado Yamaha PSR-E373",
-        descripcion: "Teclado musical con una variedad de sonidos y ritmos para experimentar. Es una alternativa versátil para aprender y crear música.",
-        precio: 249990,
-        imagen: "/imgProductos/TecladoYamahaPSR-E373.jpg",
-        categoria: "Pianos"
-    },
-    {
-        id: 9,
-        titulo: "Pearl Roadshow",
-        descripcion: "Batería acústica pensada para músicos principiantes que buscan su primer instrumento. Ideal para practicar y desarrollar el ritmo.",
-        precio: 499990,
-        imagen: "/imgProductos/PearlRoadshow.jpg",
-        categoria: "Baterías"
-    },
-    {
-        id: 10,
-        titulo: "Yamaha Rydeen",
-        descripcion: "Batería acústica versátil, adecuada para ensayos y presentaciones musicales. Ofrece una opción completa para desarrollar tus habilidades.",
-        precio: 699990,
-        imagen: "/imgProductos/YamahaRydeen.jpg",
-        categoria: "Baterías"
-    },
-    {
-        id: 11,
-        titulo: "Alesis Nitro",
-        descripcion: "Batería electrónica compacta que permite practicar con distintos sonidos. Ideal para entrenar en casa y conectar con equipos compatibles.",
-        precio: 449990,
-        imagen: "/imgProductos/AlesisNitro.jpg",
-        categoria: "Baterías"
-    },
-    {
-        id: 12,
-        titulo: "Roland TD-02",
-        descripcion: "Batería electrónica diseñada para practicar y mejorar la técnica desde casa. Su formato compacto resulta práctico para espacios reducidos.",
-        precio: 599990,
-        imagen: "/imgProductos/RolandTD-02.jpg",
-        categoria: "Baterías"
-    }
-]
+import { useParams} from "react-router-dom";
+import { obtenerProductos } from "../datos/ProductosData";
+import BotonVolver from "../componentes/atomos/BotonVolver";
 
-function DetalleProducto(){
-
-    const { id } = useParams()
+function DetalleProducto() {
+    const { id } = useParams();
+    const productos = obtenerProductos();
 
     const producto = productos.find(
-        producto => producto.id === Number(id)
-    )
+        (producto) => producto.id === Number(id)
+    );
+
+    if (!producto || !producto.activo) {
+        return (
+            <div className="container text-center my-5">
+                <h2>Producto no encontrado</h2>
+                <p>El producto no existe o no está disponible.</p>
+                <BotonVolver />
+            </div>
+        );
+    }
 
     return (
-        <div>
-            <h1 className="mb-4">Detalle del producto</h1>
+        <div className="container my-5">
+            <div className="card shadow mx-auto" style={{ maxWidth: "900px" }}>
+                <div className="row g-0 align-items-center">
+                    <div className="col-md-6 text-center p-4">
+                        <img
+                            src={producto.imagen}
+                            alt={producto.titulo}
+                            className="img-fluid"
+                            style={{ maxHeight: "400px", objectFit: "contain" }}
+                        />
+                    </div>
 
-            <img
-                src={producto?.imagen}
-                alt={producto?.titulo}
-                className="mb-4"
-                style={{ width: '300px' }}
-            />
+                    <div className="col-md-6">
+                        <div className="card-body p-4">
+                            <span className="badge bg-dark mb-3">
+                                {producto.categoria}
+                            </span>
 
-            <h2 className="mb-4">{producto?.titulo}</h2>
+                            <h1 className="card-title">{producto.titulo}</h1>
 
-            <p className="mb-4">{producto?.descripcion}</p>
+                            <p className="card-text">{producto.descripcion}</p>
 
-            <h2 className="mb-4">${producto?.precio}</h2>
+                            <h3 className="text-success mb-4">
+                                ${producto.precio.toLocaleString("es-CL")}
+                            </h3>
 
-            <div className="mt-auto mb-4">
-                <BotonVolver/>
+                            <BotonVolver />
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-    )
+    );
 }
 
-export default DetalleProducto
+export default DetalleProducto;

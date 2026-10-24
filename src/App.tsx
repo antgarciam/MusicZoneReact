@@ -10,6 +10,7 @@ import Login from './paginas/Login'
 import Footer from './componentes/organismos/Footer'
 import Registrarse from './paginas/Registrarse'
 import Carrito from './paginas/Carrito'
+import AdministrarProductos from './paginas/AdministrarProductos'
 
 function App() {
 
@@ -58,6 +59,10 @@ function App() {
           element={<Carrito/>}
         />
 
+        <Route
+          path="/administrar-productos"
+          element = {<AdministrarProductos/>}
+        />
 
       </Routes>
 
