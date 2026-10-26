@@ -22,11 +22,11 @@ export default function CardNosotros() {
         {open1 && (
           <div className="accordion-body">
             <img
-              src="public\imgNosotros\ImagenGenerica.jpg.jpg"
+              src="public\imgNosotros\Anthuan.jpg"
               alt="Anthuan Garcia"
               width="200"
             />
-            <p>No se le ocurrio que poner </p>
+            <p>Encargado de hacer la estructura principal de la pagina </p>
             <Link to="/nosotros">Ver más</Link>
           </div>
         )}
@@ -45,11 +45,11 @@ export default function CardNosotros() {
         {open2 && (
           <div className="accordion-body">
             <img
-              src="public\imgNosotros\ImagenGenerica.jpg.jpg"
+              src="public\imgNosotros\Damian.jpg"
               alt="Damian Mondaga"
               width="200"
             />
-            <p>Encargado de Control de erorres</p>
+            <p>Encargado de Control de erorres y pruebas unitarias para  corregirlas</p>
             <Link to="/nosotros">Ver más</Link>
           </div>
         )}
@@ -68,11 +68,11 @@ export default function CardNosotros() {
         {open3 && (
           <div className="accordion-body">
             <img
-              src="public\imgNosotros\ImagenGenerica.jpg.jpg"
+              src="public\imgNosotros\Benja.jpg"
               alt="Benjamin Duarte"
               width="200"
             />
-            <p>Encargado en importar los objetos, productos, etc a la pagina</p>
+            <p>Encargado en importar todo tipo objetos, productos, etc a la pagina, para que la pagina muestre el catalogo de manera correcta</p>
             <Link to="/nosotros">Ver más</Link>
           </div>
         )}
